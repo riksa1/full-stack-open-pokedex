@@ -35,3 +35,4 @@ jobs:
           heroku_email: "riko.saarinen24@gmail.com"
           healthcheck: "https://full-stack-open-pokedex1234.herokuapp.com/health"
           checkstring: "ok"
+          rollbackonhealthcheckfailed: true
