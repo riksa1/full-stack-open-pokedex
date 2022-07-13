@@ -1,1 +1,1 @@
-web: nodeee app.js
+web: node someone.js
