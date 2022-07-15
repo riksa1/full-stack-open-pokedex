@@ -1,1 +1,1 @@
-web: nodewin app.js
+web: node app.js
