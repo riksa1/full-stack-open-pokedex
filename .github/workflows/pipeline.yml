@@ -40,8 +40,7 @@ jobs:
           healthcheck: "https://full-stack-open-pokedex1234.herokuapp.com/health"
           checkstring: "ok"
           rollbackonhealthcheckfailed: true
-      - if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip') }}
-        name: Test Success
+      - name: Test Success
         uses: rjstone/discord-webhook-notify@v1
         if: success()
         env:
@@ -51,8 +50,7 @@ jobs:
           text: A new version of Pokedex deployed
           description: to https://dashboard.heroku.com/apps/full-stack-open-pokedex1234 by $NAME
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-      - if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip') }}
-        name: Test Failure
+      - name: Test Failure
         uses: rjstone/discord-webhook-notify@v1
         if: failure()
         env:
