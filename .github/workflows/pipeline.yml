@@ -43,23 +43,18 @@ jobs:
       - if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip') && success() }}
         name: Test Success
         uses: rjstone/discord-webhook-notify@v1
-        env:
-          NAME:  ${{ toJson(github.event.head_commit.author.username) }}
         with:
           severity: info
           text: A new version of Pokedex deployed
-          description: to https://dashboard.heroku.com/apps/full-stack-open-pokedex1234 by $NAME
+          description: "to https://dashboard.heroku.com/apps/full-stack-open-pokedex1234 by ${{ toJson(github.event.head_commit.author.username) }}"
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip') && failure() }}
         name: Test Failure
         uses: rjstone/discord-webhook-notify@v1
-        env:
-          NAME:  ${{ toJson(github.event.head_commit.author.username) }}
-          URL: ${{ toJson(github.event.head_commit.url) }}
         with:
           severity: error
           text: Build failed
-          description: commit $URL by $NAME broke the build :(
+          description: commit ${{ toJson(github.event.head_commit.url) }} by ${{ toJson(github.event.head_commit.author.username) }} broke the build :(
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
   tag_release:
