@@ -55,10 +55,11 @@ jobs:
         if: failure()
         env:
           NAME:  ${{ toJson(github.event.head_commit.author.username) }}
+          URL: ${{ toJson(github.event.head_commit.url) }}
         with:
           severity: error
           text: Build failed
-          description: commit by $NAME broke the build :(
+          description: commit $URL by $NAME broke the build :(
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
   tag_release:
