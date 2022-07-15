@@ -46,7 +46,7 @@ jobs:
         with:
           severity: info
           text: A new version of Pokedex deployed
-          description: to https://dashboard.heroku.com/apps/full-stack-open-pokedex1234 by ${{ toJson(github.event.head_commit.author.username) }}
+          description: "to https://dashboard.heroku.com/apps/full-stack-open-pokedex1234 by ${{ toJson(github.event.head_commit.author.username) }}"
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip') && failure() }}
         name: Test Failure
