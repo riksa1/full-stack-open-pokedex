@@ -1,13 +1,8 @@
 name: Scheduled Health Check
 
-# on:
-#   schedule:
-#     - cron: '*/10 * * * *'
-
 on:
-  push:
-    branches:
-      - tags
+  schedule:
+    - cron: '*/10 * * * *'
 
 jobs:
   scheduled_healthcheck:
